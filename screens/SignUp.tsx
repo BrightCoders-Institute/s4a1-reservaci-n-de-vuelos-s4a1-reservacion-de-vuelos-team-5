@@ -22,7 +22,7 @@ function SignUp(): React.JSX.Element {
         value={isEnabled}
       />
       <Text style={styles.txt_agree}>I agree to the Terms and Privacy Policy</Text>
-      <Text>Subscribe for select product updates</Text>
+      <Text style={styles.txt_agree}>Subscribe for select product updates</Text>
       
       <SignUpButton title='Sign Up'/>
       <Text>or</Text>
@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
     width: 350,
     //textAlign: 'center',
     letterSpacing: 0.2,
-    borderWidth: 1,
   }
 });
 

@@ -8,11 +8,14 @@ const Stack = createNativeStackNavigator();
 
 function MyStack() {
   return (
-        <Stack.Navigator>
-            <Stack.Screen 
-                name="SingUp" 
-                component={SignUp} />
-        </Stack.Navigator>
+        <Stack.Navigator> ////DALE GIT PUSHHHHHH
+          <Stack.Screen  
+              name="SignUp" 
+              component={SignUp} />
+          <Stack.Screen 
+              name="Home" 
+              component={Home} />
+        </Stack.Navigator> 
   );
 }
 export default MyStack;

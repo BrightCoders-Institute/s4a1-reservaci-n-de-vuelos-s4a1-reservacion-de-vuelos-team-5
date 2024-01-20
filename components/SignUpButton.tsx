@@ -1,13 +1,15 @@
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { useNavigation } from '@react-navigation/native'
 
-const SignUpButton = ({title}) => {
+const SignUpButton = ({title}:any) => {
+  const navigation = useNavigation()
   return (
-    <View style={styles.containerButton}>
-      <TouchableOpacity style={styles.Button}>
-        <Text style={styles.Btn_txt}>{title}</Text>
+      <TouchableOpacity style={styles.Button} onPress={() => navigation.navigate('Home')}>
+        <View style={styles.containerButton}>
+          <Text style={styles.Btn_txt}>{title}</Text>
+        </View>
       </TouchableOpacity>
-    </View>
   );
 };
 
@@ -17,7 +19,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     marginVertical: 15,
-    borderRadius: 5,
+    borderRadius: 8,
     backgroundColor: '#5C6EF8',
   },
   Button: {

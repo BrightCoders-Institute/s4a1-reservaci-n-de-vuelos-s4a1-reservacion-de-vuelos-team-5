@@ -1,10 +1,11 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet} from 'react-native'
 import React from 'react'
+import Card_fly from '../components/card_fly'
+
 
 export default function Home() {
+ 
   return (
-    <View>
-      <Text>home</Text>
-    </View>
+      <Card_fly/>
   )
 }
