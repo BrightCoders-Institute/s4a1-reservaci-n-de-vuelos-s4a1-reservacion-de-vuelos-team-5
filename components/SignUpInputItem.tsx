@@ -1,11 +1,19 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native'
-import React from 'react'
+import React,{useState } from 'react'
+
 
 export default function SignUpInputItem ({placeholder, title, secure}){
+  const [deselect, setSelect] = useState(false)
+
   return (
     <View>
       <Text>{title}</Text>
-      <TextInput style={styles.input} placeholder={placeholder} secureTextEntry={secure}/>
+      <TextInput 
+        style={[styles.input, deselect && styles.isSelected]} 
+        placeholder={placeholder} 
+        secureTextEntry={secure} 
+        onFocus={() => setSelect(true)}
+        onBlur ={() => setSelect(false)}/>
     </View>
   )
 }
@@ -21,4 +29,8 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         padding: 10,
       },
+      isSelected:{
+        borderColor: 'purple',
+        backgroundColor: 'lightpurple',
+      }
 })

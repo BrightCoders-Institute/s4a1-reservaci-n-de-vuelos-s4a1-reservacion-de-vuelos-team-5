@@ -8,12 +8,13 @@ function SignUp(): React.JSX.Element {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const navigation = useNavigation()
+  
   return (
     <View style={styles.view}>
       <Text style={styles.signUp}>SIGN UP</Text>
-      <SignUpInputItem placeholder='First Name' title='First Name' secure={false}/>
-      <SignUpInputItem placeholder='Email' title='Email' secure={false}/>
-      <SignUpInputItem placeholder='Password' title='Password' secure={true}/>
+        <SignUpInputItem placeholder='First Name' title='First Name' secure={false}/>
+        <SignUpInputItem placeholder='Email' title='Email' secure={false}/>
+        <SignUpInputItem placeholder='Password' title='Password' secure={true}/>
       <Text>Use 8 or more characteres</Text>
       <Switch
         trackColor={{false: '#767577', true: '#81b0ff'}}

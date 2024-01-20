@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 
 function MyStack() {
   return (
-        <Stack.Navigator> ////DALE GIT PUSHHHHHH
+        <Stack.Navigator> 
           <Stack.Screen  
               name="SignUp" 
               component={SignUp} />
