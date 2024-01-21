@@ -4,11 +4,22 @@ import {View, Text, StyleSheet} from 'react-native';
 function CardFlight() {
   return (
     <View style={styles.container}>
-      <View>
-        <Text>BEG</Text>
-        <Text>Serbia</Text>
-        <Text>AMS</Text>
-        <Text />
+      <View style={styles.destinyView}>
+        <View>
+          <Text style={styles.city}>beg</Text>
+          <Text style={styles.country}>serbia</Text>
+        </View>
+
+        <Text style={{color: 'blue', fontWeight: '900'}}>ICON</Text>
+
+        <View>
+          <Text style={styles.city}>ams</Text>
+          <Text style={styles.country}>serbia</Text>
+        </View>
+      </View>
+      <View style={styles.dateView}>
+        <Text style={styles.date}>January 10,2024</Text>
+        <Text style={styles.date}>2 passengers</Text>
       </View>
     </View>
   );
@@ -17,17 +28,44 @@ function CardFlight() {
 export default CardFlight;
 
 const styles = StyleSheet.create({
-  any: {
-    color: 'black',
-  },
   container: {
-    borderWidth: 2,
-    borderColor: 'black',
-    padding: 10,
-    margin: 10,
-    backgroundColor: 'white',
-    justifyContent: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: 'black',
     width: 'auto',
     height: 'auto',
+    paddingHorizontal: 5,
+  },
+  destinyView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomColor: 'lightgrey',
+    borderBottomWidth: 1,
+    paddingVertical: 10,
+  },
+  dateView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 12,
+    paddingBottom: 18,
+  },
+  city: {
+    color: 'black',
+    fontSize: 20,
+    fontWeight: '900',
+    textTransform: 'uppercase',
+    fontFamily: 'Roboto',
+    paddingBottom: 5,
+  },
+  country: {
+    color: 'grey',
+    fontSize: 14,
+    textTransform: 'capitalize',
+  },
+  date: {
+    color: 'black',
+    fontWeight: '600',
   },
 });
