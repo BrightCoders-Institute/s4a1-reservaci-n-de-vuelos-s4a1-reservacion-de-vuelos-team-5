@@ -6,6 +6,13 @@ import Card_fly from '../components/card_fly'
 export default function Home() {
  
   return (
-      <Card_fly/>
+    <View>
+      
+      <Card_fly></Card_fly>
+      <Card_fly></Card_fly>
+      <Card_fly></Card_fly>
+      <Card_fly></Card_fly>
+      
+    </View>
   )
 }
