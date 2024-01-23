@@ -1,15 +1,17 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import { useNavigation } from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native';
 
-const SignUpButton = ({title}:any) => {
-  const navigation = useNavigation()
+const SignUpButton = ({title}: any) => {
+  const navigation = useNavigation();
   return (
-      <TouchableOpacity style={styles.Button} onPress={() => navigation.navigate('Home')}>
-        <View style={styles.containerButton}>
-          <Text style={styles.Btn_txt}>{title}</Text>
-        </View>
-      </TouchableOpacity>
+    <TouchableOpacity
+      style={styles.Button}
+      onPress={() => navigation.navigate('Home')}>
+      <View style={styles.containerButton}>
+        <Text style={styles.Btn_txt}>{title}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
