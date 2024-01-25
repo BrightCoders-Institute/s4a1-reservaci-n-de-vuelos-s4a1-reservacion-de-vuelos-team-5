@@ -31,7 +31,7 @@ export default function FinalRegister() {
         justifyContent: "center",
         alignItems:'center',
         position: 'absolute',
-        left: "50%",
+        left: "45%",
         top: '90%',
         transform: [{ translateX: -100 }] //mitad del ancho del boton
       }

@@ -61,7 +61,7 @@ export default function SelectDateScreen() {
           justifyContent: "center",
           alignItems:'center',
           position: 'absolute',
-          left: "50%",
+          left: "45%",
           top: '90%',
           transform: [{ translateX: -90 }] //mitad del ancho del boton
         }

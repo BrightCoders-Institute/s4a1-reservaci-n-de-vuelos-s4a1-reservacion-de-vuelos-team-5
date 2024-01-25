@@ -2,38 +2,44 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+interface CardProcessProps {
+    nameO: string;
+    countryO: string;
+    nameD: string;
+    countryD: string;
+    date: string;
+    passengers: string;
+}
 
-function CardFlight() {
+function CardProcess({nameO, countryO, nameD, countryD, date, passengers,}: CardProcessProps) {
   return (
     <View style={styles.container}>
       <View style={styles.destinyView}>
         <View>
-          <Text style={styles.city}>beg</Text>
-          <Text style={styles.country}>serbia</Text>
+          <Text style={styles.city}>{nameO}</Text>
+          <Text style={styles.country}>{countryO}</Text>
         </View>
 
         <Icon name='airplane' color='#5C6EF8' style={styles.planeIcon} size={25}/>
 
 
         <View>
-          <Text style={styles.city}>ams</Text>
-          <Text style={styles.country}>serbia</Text>
+          <Text style={styles.city}>{nameD}</Text>
+          <Text style={styles.country}>{countryD}</Text>
         </View>
       </View>
       <View style={styles.dateView}>
-        <Text style={styles.date}>January 10,2024</Text>
-        <Text style={styles.date}>2 passengers</Text>
+        <Text style={styles.date}>{date}</Text>
+        <Text style={styles.date}>{passengers}</Text>
       </View>
     </View>
   );
 }
 
-export default CardFlight;
+export default CardProcess;
 
 const styles = StyleSheet.create({
   container: {
-    borderBottomWidth: 2,
-    borderBottomColor: 'black',
     width: 'auto',
     height: 'auto',
     paddingHorizontal: 5,
@@ -71,4 +77,8 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: '600',
   },
+  planeIcon:{
+    position: 'absolute',
+    left:'45%'
+  }
 });

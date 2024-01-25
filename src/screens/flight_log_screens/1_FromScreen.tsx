@@ -1,13 +1,13 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native'
-import React from 'react'
+import React, {createContext, useContext} from 'react'
 import BtnNext from '../../components/BtnNext'
 import ToScreen from './2_ToScreen'
 
-
 export default function FromScreen() {
   return (
+    
     <View style={{position:"relative", flex: 1,padding: 20}}>
-
+      
       <View style={styles.containerInput}>
         <Text style={styles.title}>Where are you {'\n'}now?</Text>
         
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignItems:'center',
       position: 'absolute',
-      left: "50%",
+      left: "45%",
       top: '90%',
       transform: [{ translateX: -100 }] //mitad del ancho del boton
     }

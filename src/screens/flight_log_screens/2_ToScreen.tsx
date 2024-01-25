@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native'
 import React from 'react'
 import BtnNext from '../../components/BtnNext'
+import CardProcess from '../../components/CardProcess'
 
 export default function ToScreen() {
   return (
     <View style={{position:"relative", flex: 1,padding: 20}}>
-
+        <CardProcess nameO='Mexicoooo' countryO='' nameD='' countryD='' date='' passengers=''/>
       <View style={styles.containerInput}>
         <Text style={styles.title}>Where you will be {'\n'}flying to?</Text>
         
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignItems:'center',
       position: 'absolute',
-      left: "50%",
+      left: "45%",
       top: '90%',
       transform: [{ translateX: -100 }] //mitad del ancho del boton
     }

@@ -9,13 +9,22 @@ export default function BtnAddFly()  {
     <TouchableOpacity
     onPress={()=>navigation.navigate('FromScreen')}
     >
-        <View >
-        <Icon name='plus-circle' size={70} color={'blue'}/>
+        <View style={styles.containerIcon}>
+        <Icon name='plus-circle' size={70} color={'#5C6EF8'} style={styles.iconFly}/>
         </View>
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
-    
+  containerIcon: {
+    height: 67,
+    width: 63,
+    borderRadius: 50,
+    backgroundColor: '#F3F2F3'
+  },
+  iconFly: {
+    backgroundColor: '#F3F2F3',
+
+  }
 });
