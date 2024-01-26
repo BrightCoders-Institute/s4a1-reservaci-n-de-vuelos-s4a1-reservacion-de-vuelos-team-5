@@ -2,13 +2,18 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, {useState} from 'react'
 import BtnNext from '../../components/BtnNext'
 import {Calendar, LocaleConfig} from 'react-native-calendars';
+import CardProcess from '../../components/CardProcess';
 
 
-export default function SelectDateScreen() {
+export default function SelectDateScreen({route}) {
   const [selectedDay, setSelectedDay] = useState('');
+  const {origin, destiny} = route.params
+  const objetoDeVariables = {origin: origin, destiny:destiny, date:selectedDay}
+  const objetoParaPasarANext = {route:'HowManyScreen', params: objetoDeVariables}
   
-    return (
-      <View style={{position:"relative", flex: 1,padding: 20}}>
+  return (
+    <View style={{position:"relative", flex: 1,padding: 20}}>
+        <CardProcess nameO = {origin} countryO='' nameD={destiny} countryD='' date='' passengers=''/>
         <View style={styles.containerInput}>
           <Text style={styles.title}>Select Date</Text>
         </View> 
@@ -33,7 +38,7 @@ export default function SelectDateScreen() {
             }}
           ></Calendar>
         <View style={styles.btn}>
-          <BtnNext next={'HowManyScreen'} value={selectedDay}></BtnNext>
+          <BtnNext next={objetoParaPasarANext}></BtnNext>
         </View>
       </View>
       )

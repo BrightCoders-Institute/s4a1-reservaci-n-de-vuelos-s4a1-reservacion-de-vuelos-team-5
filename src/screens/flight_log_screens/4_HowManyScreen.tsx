@@ -1,23 +1,39 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import BtnNext from '../../components/BtnNext'
-import Numbers from '../../components/DropDownList'
 import  Icon  from 'react-native-vector-icons/AntDesign'
+import CardProcess from '../../components/CardProcess';
+import WheelPicker from 'react-native-wheely'
 
 
-export default function HowManyScreen() {
+export default function HowManyScreen({route}) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const {origin,destiny,date} = route.params
+  const objetoDeVariables = {origin: origin, destiny: destiny, date: date, passengers: selectedIndex }
+  const objetoParaPasarANext = {route:'FinalRegister', params:objetoDeVariables}
   return (
         <View style={{position:"relative", flex: 1,padding: 20}}>
+          <CardProcess nameO = {origin} countryO='' nameD={destiny} countryD='' date={date} passengers=''/>
+          
           <View style={styles.containerInput}>
             <Text style={styles.title}>How many {'\n'}passengers?</Text>
           </View>
+            
             <Icon name='caretright' color='blue' size={25} style={styles.iconLeft}/>
             <Icon name='caretleft' color='blue' size={25}style={styles.iconRight}/>
+
           <View style={styles.piker}>
-            <Numbers/>
+            <WheelPicker
+              selectedIndex={selectedIndex}
+              options={['1', '2', '3','4','5','6','7','8','9']}
+              onChange={(index) => setSelectedIndex(index)}
+              itemHeight={90}
+              itemTextStyle={{fontSize:30, color: 'black'}}
+            ></WheelPicker>
           </View>
+
           <View style={styles.btn}>
-            <BtnNext next={'FinalRegister'}></BtnNext>
+            <BtnNext next={objetoParaPasarANext}></BtnNext>
           </View>
         </View>
       )

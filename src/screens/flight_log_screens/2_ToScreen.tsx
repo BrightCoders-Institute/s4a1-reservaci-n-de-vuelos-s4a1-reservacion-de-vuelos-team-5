@@ -1,19 +1,23 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import BtnNext from '../../components/BtnNext'
 import CardProcess from '../../components/CardProcess'
 
-export default function ToScreen() {
+export default function ToScreen({route}) {
+  const [destinyInput, setDestinyInput] = useState("")
+  const {origin} = route.params;
+  const objetoDeVariables = {origin: origin, destiny: destinyInput}
+  const objetoParaPasarANext = {route:'SelectDateScreen', params:objetoDeVariables}
   return (
     <View style={{position:"relative", flex: 1,padding: 20}}>
-        <CardProcess nameO='Mexicoooo' countryO='' nameD='' countryD='' date='' passengers=''/>
+        <CardProcess nameO = {origin} countryO='' nameD='' countryD='' date='' passengers=''/>
       <View style={styles.containerInput}>
         <Text style={styles.title}>Where you will be {'\n'}flying to?</Text>
         
-        <TextInput style={styles.input} placeholder='Select Location'></TextInput>
+        <TextInput value={destinyInput} onChangeText={setDestinyInput}style={styles.input} placeholder='Select Location'></TextInput>
       </View>
       <View style={styles.btn}>
-        <BtnNext next={'SelectDateScreen'}></BtnNext>
+        <BtnNext next={objetoParaPasarANext}></BtnNext>
       </View>
      
     </View>

@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import BtnNext from '../../components/BtnNext'
+import CardProcess from '../../components/CardProcess'; 
 
-export default function FinalRegister() {
+export default function FinalRegister({route}) {
+  const {origin, destiny,date,passengers} = route.params
   return (
     <View style={{position:"relative", flex: 1,padding: 20}}>
+      <CardProcess nameO = {origin} countryO='' nameD={destiny} countryD='' date={date} passengers={`${passengers+1} passengers`}/>
       <View style={styles.containerInput}>
         <Text style={styles.title}>Your request {'\n'}was received.</Text>
       </View>
