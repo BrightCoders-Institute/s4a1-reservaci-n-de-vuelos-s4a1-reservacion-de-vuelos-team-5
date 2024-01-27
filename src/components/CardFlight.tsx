@@ -12,7 +12,10 @@ function CardFlight() {
           <Text style={styles.country}>serbia</Text>
         </View>
 
+
         <Icon name='airplane' color='#5C6EF8' style={styles.planeIcon} size={25}/>
+
+
 
 
         <View>

@@ -9,6 +9,7 @@ export default function BtnAddFly()  {
     <TouchableOpacity
     onPress={()=>navigation.navigate('FromScreen')}
     >
+
         <View style={styles.containerIcon}>
         <Icon name='plus-circle' size={70} color={'#5C6EF8'} style={styles.iconFly}/>
         </View>
@@ -27,4 +28,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3F2F3',
 
   }
+
 });
