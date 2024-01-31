@@ -3,26 +3,36 @@ import {Switch, StyleSheet, View, Text} from 'react-native';
 import SignUpButton from '../components/SignUpButton';
 import SignUpInputItem from '../components/SignUpInputItem';
 
+
 function SignUp(): React.JSX.Element {
   const [isEnabled, setIsEnabled] = useState(false);
   const [isEnabled2, setIsEnabled2] = useState(false);
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const toggleSwitch2 = () => setIsEnabled2(previousState2 => !previousState2);
+  
+  
+  
   return (
     <View style={styles.view}>
       <View style={styles.inputsView}>
         <SignUpInputItem
+          func={ setName}
           placeholder="Your Name"
           title="First Name"
           secure={false}
         />
         <SignUpInputItem
+          func={ setEmail}
           placeholder="email@email.com"
           title="Email"
           secure={false}
-        />
+          />
         <View style={{display: 'flex', alignItems: 'center', gap: 5}}>
           <SignUpInputItem
+            func={ setPassword}
             placeholder="Password123"
             title="Password"
             secure={true}
@@ -56,9 +66,16 @@ function SignUp(): React.JSX.Element {
       </View>
 
       <View style={styles.buttonsView}>
-        <SignUpButton title="Sign Up" />
+        <SignUpButton title="Sign Up" 
+          password={password}
+          email= {email}
+        />
         <Text style={styles.simpleText}>or</Text>
-        <SignUpButton title="Sign Up with Google" />
+        <SignUpButton 
+        password={password}
+        email= {email}
+        title="Sign Up with Google" />
+
         <Text style={styles.simpleText}>
           Already have an account? <Text style={{color: 'blue'}}>Log In</Text>
         </Text>
