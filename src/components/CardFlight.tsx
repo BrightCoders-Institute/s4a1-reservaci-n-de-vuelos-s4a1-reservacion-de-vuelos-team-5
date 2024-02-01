@@ -3,29 +3,33 @@ import {View, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 
-function CardFlight() {
+interface CardProcessProps {
+  destino: string
+  origen: string,
+  fecha: string,
+  pasajeros: string
+}
+
+function CardFlight({ origen, destino, fecha, pasajeros}:CardProcessProps) {
+  
   return (
     <View style={styles.container}>
       <View style={styles.destinyView}>
         <View>
-          <Text style={styles.city}>beg</Text>
+          <Text style={styles.city}>{origen}</Text>
           <Text style={styles.country}>serbia</Text>
         </View>
 
-
-        <Icon name='airplane' color='#5C6EF8' style={styles.planeIcon} size={25}/>
-
-
-
+        <Icon name='airplane' color='#5C6EF8' size={25}/>
 
         <View>
-          <Text style={styles.city}>ams</Text>
+          <Text style={styles.city}>{destino}</Text>
           <Text style={styles.country}>serbia</Text>
         </View>
       </View>
       <View style={styles.dateView}>
-        <Text style={styles.date}>January 10,2024</Text>
-        <Text style={styles.date}>2 passengers</Text>
+        <Text style={styles.date}>{fecha}</Text>
+        <Text style={styles.date}>{pasajeros} passengers</Text>
       </View>
     </View>
   );
@@ -36,10 +40,13 @@ export default CardFlight;
 const styles = StyleSheet.create({
   container: {
     borderBottomWidth: 2,
-    borderBottomColor: 'black',
+    borderWidth: 1,
     width: 'auto',
     height: 'auto',
     paddingHorizontal: 5,
+    borderRadius: 9,
+    borderColor: '#5C6EF8'
+    
   },
   destinyView: {
     display: 'flex',

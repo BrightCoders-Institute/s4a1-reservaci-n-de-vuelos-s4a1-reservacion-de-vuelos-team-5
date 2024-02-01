@@ -1,10 +1,15 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import BtnNext from '../../components/BtnNext';
 import CardProcess from '../../components/CardProcess';
+import firestore from '@react-native-firebase/firestore';
+import {useNavigation} from '@react-navigation/native';
 
 export default function FinalRegister({route}) {
+  const usersCollection = firestore().collection('vuelos');
   const {origin, destiny, date, passengers} = route.params;
+  const navigation = useNavigation();
+  
   return (
     <View style={styles.containerView}>
       <View style={{marginTop: 130}} />
@@ -14,13 +19,24 @@ export default function FinalRegister({route}) {
         nameD={destiny}
         countryD=""
         date={date}
-        passengers={`${passengers + 1} passengers`}
+        passengers={`${passengers} passengers`}
       />
       <View style={styles.containerInput}>
         <Text style={styles.title}>Your request {'\n'}was received.</Text>
       </View>
       <View style={styles.btn}>
-        <BtnNext next={'FinalRegister'} />
+        <TouchableOpacity
+          onPress={
+            [usersCollection.add({
+              Vuelos: {origen :origin, destino: destiny, fecha: date, pasajeros: passengers}
+            }),
+            navigation.navigate('Home')]
+          }
+
+        >
+          
+        </TouchableOpacity>
+        
       </View>
     </View>
   );

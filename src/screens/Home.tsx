@@ -1,21 +1,48 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import CardFlight from '../components/CardFlight';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, FlatList, ScrollView} from 'react-native';
 import BtnAddFly from '../components/BtnAddFly';
+import firestore from '@react-native-firebase/firestore';
+
+interface FlightData {
+  destino: string;
+  origen: string;
+  fecha: string;
+  pasajeros: string;
+}
 
 export default function Home() {
+  const [data, setData] = useState<FlightData[]>([]);
+ 
+  useEffect(() => {
+    const loadData = firestore().collection('vuelos').onSnapshot((snapshot) => {
+      const newData = snapshot.docs.map(document => document.data().Vuelos);
+      setData(newData);
+    });
+    return () => loadData();
+  }, []);
+
   return (
+    <>
+    <ScrollView>
     <View style={styles.homeView}>
-      <CardFlight />
-      <CardFlight />
-      <CardFlight />
-      <CardFlight />
-      <CardFlight />
-      <CardFlight />
-      <View style={styles.addFly}>
-        <BtnAddFly/>
+     {data.map((vuelo, index) => (
+         vuelo && ( 
+         <CardFlight
+           key={index}
+           pasajeros={vuelo.pasajeros}
+           fecha={vuelo.fecha}
+           origen={vuelo.origen}
+           destino={vuelo.destino}
+         />
+         )
+      ))} 
       </View>
-    </View>
+    </ScrollView>
+        <View style={styles.addFly}>
+          <BtnAddFly/>
+        </View>
+    </>
   );
 }
 
@@ -30,6 +57,6 @@ const styles = StyleSheet.create({
   addFly: {
     position: 'absolute',
     left:'50%',
-    top: '90%'
+    top: '90%',
   }
 });
