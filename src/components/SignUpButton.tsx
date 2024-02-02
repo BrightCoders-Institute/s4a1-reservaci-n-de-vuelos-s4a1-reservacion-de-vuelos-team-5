@@ -20,9 +20,9 @@ const SignUpButton = ({title,email,password}:SignUpProps) => {
     if(emailPattern.test(email) && passwordPattern.test(password)){
       auth().createUserWithEmailAndPassword(`${email}`, `${password}`)
       Alert.alert('Éxito');
-      navigation.navigate('Home')
+      navigation.navigate('Login')
     } else {
-      Alert.alert('Error', '¡El email o contraseña no validos!');
+      Alert.alert('Error', '¡El email o contraseña no son validos!');
 
     }
   }

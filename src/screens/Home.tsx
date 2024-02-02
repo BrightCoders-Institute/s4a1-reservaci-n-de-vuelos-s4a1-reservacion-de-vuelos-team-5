@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   addFly: {
     position: 'absolute',
-    left:'50%',
+    left:'43%',
     top: '90%',
   }
 });
