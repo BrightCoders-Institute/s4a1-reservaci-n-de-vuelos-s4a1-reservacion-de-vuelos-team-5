@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CardFlight from '../components/CardFlight';
 import {StyleSheet, View, FlatList, ScrollView} from 'react-native';
 import BtnAddFly from '../components/BtnAddFly';
@@ -13,35 +13,38 @@ interface FlightData {
 
 export default function Home() {
   const [data, setData] = useState<FlightData[]>([]);
- 
+
   useEffect(() => {
-    const loadData = firestore().collection('vuelos').onSnapshot((snapshot) => {
-      const newData = snapshot.docs.map(document => document.data().Vuelos);
-      setData(newData);
-    });
+    const loadData = firestore()
+      .collection('vuelos')
+      .onSnapshot(snapshot => {
+        const newData = snapshot.docs.map(document => document.data().Vuelos);
+        setData(newData);
+      });
     return () => loadData();
   }, []);
 
   return (
     <>
-    <ScrollView>
-    <View style={styles.homeView}>
-     {data.map((vuelo, index) => (
-         vuelo && ( 
-         <CardFlight
-           key={index}
-           pasajeros={vuelo.pasajeros}
-           fecha={vuelo.fecha}
-           origen={vuelo.origen}
-           destino={vuelo.destino}
-         />
-         )
-      ))} 
-      </View>
-    </ScrollView>
-        <View style={styles.addFly}>
-          <BtnAddFly/>
+      <ScrollView>
+        <View style={styles.homeView}>
+          {data.map(
+            (vuelo, index) =>
+              vuelo && (
+                <CardFlight
+                  key={index}
+                  pasajeros={vuelo.pasajeros}
+                  fecha={vuelo.fecha}
+                  origen={vuelo.origen}
+                  destino={vuelo.destino}
+                />
+              ),
+          )}
         </View>
+      </ScrollView>
+      <View style={styles.addFly}>
+        <BtnAddFly />
+      </View>
     </>
   );
 }
@@ -52,11 +55,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     gap: 15,
     flex: 1,
-    
   },
   addFly: {
     position: 'absolute',
-    left:'43%',
+    left: '43%',
     top: '90%',
-  }
+  },
 });

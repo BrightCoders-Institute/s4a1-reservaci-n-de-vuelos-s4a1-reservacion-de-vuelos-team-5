@@ -9,7 +9,7 @@ export default function FinalRegister({route}) {
   const usersCollection = firestore().collection('vuelos');
   const {origin, destiny, date, passengers} = route.params;
   const navigation = useNavigation();
-  
+
   return (
     <View style={styles.containerView}>
       <View style={{marginTop: 130}} />
@@ -26,17 +26,18 @@ export default function FinalRegister({route}) {
       </View>
       <View style={styles.btn}>
         <TouchableOpacity
-          onPress={
-            [usersCollection.add({
-              Vuelos: {origen :origin, destino: destiny, fecha: date, pasajeros: passengers}
+          onPress={[
+            usersCollection.add({
+              Vuelos: {
+                origen: origin,
+                destino: destiny,
+                fecha: date,
+                pasajeros: passengers,
+              },
             }),
-            navigation.navigate('Home')]
-          }
-
-        >
-          
-        </TouchableOpacity>
-        
+            navigation.navigate('Home'),
+          ]}
+        />
       </View>
     </View>
   );

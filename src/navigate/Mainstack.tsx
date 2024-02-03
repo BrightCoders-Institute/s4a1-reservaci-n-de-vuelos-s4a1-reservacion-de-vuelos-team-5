@@ -11,20 +11,42 @@ import HowManyScreen from '../screens/flight_log_screens/4_HowManyScreen';
 import FinalRegister from '../screens/flight_log_screens/5_FinalRegister';
 
 const Stack = createNativeStackNavigator();
-// options={{title: ''}}
-// options={{headerShown: false}}
 function MyStack() {
   return (
-    <Stack.Navigator initialRouteName='Login'>
-      <Stack.Screen name="SignUp" component={SignUp} options={{title: 'Sign Up'}}/>
-      <Stack.Screen name="Home" component={Home} options={{title: 'Home'}}/>
-      <Stack.Screen name="Login" component={Login} options={{title: 'Login'}}/>
+    <Stack.Navigator initialRouteName="Signup">
+      <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{title: 'Sign Up'}}
+      />
+      <Stack.Screen name="Home" component={Home} options={{title: 'Home'}} />
+      <Stack.Screen name="Login" component={Login} options={{title: 'Login'}} />
       {/* 2dst */}
-      <Stack.Screen name="FromScreen" component={FromScreen} options={{title: 'From Screen'}}/>
-      <Stack.Screen name="ToScreen" component={ToScreen} options={{title: 'To Screen'}}/>
-      <Stack.Screen name="SelectDateScreen" component={SelectDateScreen} options={{title: 'To Screen'}}/>
-      <Stack.Screen name="HowManyScreen" component={HowManyScreen} options={{title: 'Select Date Screen'}}/>
-      <Stack.Screen name="FinalRegister" component={FinalRegister} options={{title: 'Final Register'}}/>
+      <Stack.Screen
+        name="FromScreen"
+        component={FromScreen}
+        options={{title: 'From Screen'}}
+      />
+      <Stack.Screen
+        name="ToScreen"
+        component={ToScreen}
+        options={{title: 'To Screen'}}
+      />
+      <Stack.Screen
+        name="SelectDateScreen"
+        component={SelectDateScreen}
+        options={{title: 'To Screen'}}
+      />
+      <Stack.Screen
+        name="HowManyScreen"
+        component={HowManyScreen}
+        options={{title: 'Select Date Screen'}}
+      />
+      <Stack.Screen
+        name="FinalRegister"
+        component={FinalRegister}
+        options={{title: 'Final Register'}}
+      />
     </Stack.Navigator>
   );
 }

@@ -1,38 +1,38 @@
 import React, {useState} from 'react';
-import {Switch, StyleSheet, View, Text} from 'react-native';
+import {Switch, StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import SignUpButton from '../components/SignUpButton';
 import SignUpInputItem from '../components/SignUpInputItem';
-
+import {useNavigation} from '@react-navigation/native';
 
 function SignUp(): React.JSX.Element {
   const [isEnabled, setIsEnabled] = useState(false);
   const [isEnabled2, setIsEnabled2] = useState(false);
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const toggleSwitch2 = () => setIsEnabled2(previousState2 => !previousState2);
-  
-  
-  
+
+  const navigation = useNavigation();
+
   return (
     <View style={styles.view}>
       <View style={styles.inputsView}>
         <SignUpInputItem
-          func={ setName}
+          func={setName}
           placeholder="Your Name"
           title="First Name"
           secure={false}
         />
         <SignUpInputItem
-          func={ setEmail}
+          func={setEmail}
           placeholder="email@email.com"
           title="Email"
           secure={false}
-          />
+        />
         <View style={{display: 'flex', alignItems: 'center', gap: 5}}>
           <SignUpInputItem
-            func={ setPassword}
+            func={setPassword}
             placeholder="Password123"
             title="Password"
             secure={true}
@@ -66,19 +66,30 @@ function SignUp(): React.JSX.Element {
       </View>
 
       <View style={styles.buttonsView}>
-        <SignUpButton title="Sign Up" 
-          password={password}
-          email= {email}
-        />
+        <SignUpButton title="Sign Up" password={password} email={email} />
         <Text style={styles.simpleText}>or</Text>
-        <SignUpButton 
-        password={password}
-        email= {email}
-        title="Sign Up with Google" />
+        <SignUpButton
+          password={password}
+          email={email}
+          title="Sign Up with Google"
+        />
 
-        <Text style={styles.simpleText}>
-          Already have an account? <Text style={{color: 'blue'}}>Log In</Text>
-        </Text>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 10,
+            alignItems: 'center',
+          }}>
+          <Text style={styles.simpleText}>Already have an account?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <View>
+              <Text style={{color: 'blue', fontSize: 15, fontWeight: '900'}}>
+                Log In
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );

@@ -1,39 +1,37 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity,Alert} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 
-
- 
 interface SignUpProps {
-  title: string,
-  email: string,
-  password: string,
-} 
+  title: string;
+  email: string;
+  password: string;
+}
 
-const SignUpButton = ({title,email,password}:SignUpProps) => {
+const SignUpButton = ({title, email, password}: SignUpProps) => {
   const navigation = useNavigation();
 
-  function validate(){
-    const emailPattern =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function validate() {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
-    if(emailPattern.test(email) && passwordPattern.test(password)){
-      auth().createUserWithEmailAndPassword(`${email}`, `${password}`)
+    if (emailPattern.test(email) && passwordPattern.test(password)) {
+      auth().createUserWithEmailAndPassword(`${email}`, `${password}`);
       Alert.alert('Éxito');
-      navigation.navigate('Login')
+      navigation.navigate('Login');
     } else {
       Alert.alert('Error', '¡El email o contraseña no son validos!');
-
     }
   }
-  const len = () => (password.length < 1 || email.length < 1 ? false : true)
-  
+  const len = () => (password.length < 1 || email.length < 1 ? false : true);
+
   return (
     <TouchableOpacity
       style={styles.Button}
       disabled={!len()}
       onPress={validate}>
-      <View style={[styles.containerButton, !len() && styles.containerButtonFalse]}>
+      <View
+        style={[styles.containerButton, !len() && styles.containerButtonFalse]}>
         <Text style={styles.Btn_txt}>{title}</Text>
       </View>
     </TouchableOpacity>
