@@ -22,6 +22,7 @@ const Login = () => {
         return;
       }
       await auth().signInWithEmailAndPassword(userEmail, userPassword);
+      navigation.navigate('Home');
     } catch (error: any) {
       console.log('ERROR: ', error.toString());
     }
@@ -45,7 +46,6 @@ const Login = () => {
       <LoginButton
         press={() => {
           login(email, password);
-          navigation.navigate('Home');
         }}
       />
     </View>
