@@ -7,19 +7,16 @@ import { getFirestore, doc, setDoc  } from 'firebase/firestore';
 
 
 
-interface LoginProps {
-    email: string,
-    password: string,
+interface LoginButtonProps {
+  press: () => void;
 }
-
-const LoginButton = ({email, password} : LoginProps) => {
+const LoginButton : React.FC<LoginButtonProps> = ({press}) => {
     const navegation = useNavigation();
     
-   
     return (
         <TouchableOpacity
           style={styles.Button}
-          onPress={navegation.navigate('Home')}>
+          onPress={press}>
           <View style={[styles.containerButton]}>
             <Text style={styles.Btn_txt}>Login</Text>
           </View>

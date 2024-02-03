@@ -92,8 +92,6 @@ const styles = StyleSheet.create({
     gap: 50,
     alignItems: 'center',
     margin: 30,
-    // borderColor: 'red',
-    // borderWidth: 2,
   },
   inputsView: {
     display: 'flex',
