@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Alert} from 'react-native';
 import React, {useState} from 'react';
 import SignUpInputItem from '../components/SignUpInputItem';
 import LoginButton from '../components/LoginButton';
@@ -24,7 +24,7 @@ const Login = () => {
       await auth().signInWithEmailAndPassword(userEmail, userPassword);
       navigation.navigate('Home');
     } catch (error: any) {
-      console.log('ERROR: ', error.toString());
+      Alert.alert(' Email or Password are invalid'); //error.toString()
     }
   }
 
