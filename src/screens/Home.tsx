@@ -1,9 +1,10 @@
 import React, {useEffect, useState, useContext} from 'react';
 import CardFlight from '../components/CardFlight';
-import {StyleSheet, View, FlatList, ScrollView} from 'react-native';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import BtnAddFly from '../components/BtnAddFly';
 import firestore from '@react-native-firebase/firestore';
 import GlobalContext from '../context/context';
+import {UserContext} from '../../App';
 
 interface FlightData {
   destino: string;
@@ -14,8 +15,9 @@ interface FlightData {
 }
 
 export default function Home() {
-  const [data, setData] = useState<FlightData[]>([]);
-  const {globalVariable} = useContext(GlobalContext);
+  const [data, setData] = useState<FlightData[]>([]); //esto para que es?
+  const {user} = useContext(UserContext);
+  console.log('Home inicio con el usuario: ', user);
   useEffect(() => {
     const loadData = firestore()
       .collection('vuelos')
@@ -30,8 +32,9 @@ export default function Home() {
     <>
       <ScrollView>
         <View style={styles.homeView}>
-          {data.map((vuelo, index) => {
-            if (vuelo.usuario === globalVariable) {
+          {/*ESTA PARTE DA ERROR =>*/}
+          {/* {data.map((vuelo, index) => {
+            if (vuelo.usuario === user) {
               return (
                 <CardFlight
                   key={index}
@@ -43,7 +46,7 @@ export default function Home() {
               );
             }
             return null; // Agrega un retorno null en el caso de que la condición no se cumpla
-          })}
+          })} */}
         </View>
       </ScrollView>
       <View style={styles.addFly}>
