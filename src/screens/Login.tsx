@@ -1,11 +1,13 @@
 import {StyleSheet, Text, View, Alert} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import SignUpInputItem from '../components/SignUpInputItem';
 import LoginButton from '../components/LoginButton';
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
+import GlobalContext from '../context/context';
 
 const Login = () => {
+  const {setGlobalVariable, globalVariable} = useContext(GlobalContext);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -22,9 +24,13 @@ const Login = () => {
         return;
       }
       await auth().signInWithEmailAndPassword(userEmail, userPassword);
+      console.log("ya hicisite log")
+      setGlobalVariable(userEmail)
+      console.log(globalVariable)
+      console.log("ya pasaste setGlobal")
       navigation.navigate('Home');
     } catch (error: any) {
-      Alert.alert(' Email or Password are invalid'); //error.toString()
+      Alert.alert(' Email or Password are invalid', error.ToString()); //error.toString()
     }
   }
 

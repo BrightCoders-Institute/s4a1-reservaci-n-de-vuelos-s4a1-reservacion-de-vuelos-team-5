@@ -13,7 +13,7 @@ import FinalRegister from '../screens/flight_log_screens/5_FinalRegister';
 const Stack = createNativeStackNavigator();
 function MyStack() {
   return (
-    <Stack.Navigator initialRouteName="Signup">
+    <Stack.Navigator initialRouteName="SignUp">
       <Stack.Screen
         name="SignUp"
         component={SignUp}
