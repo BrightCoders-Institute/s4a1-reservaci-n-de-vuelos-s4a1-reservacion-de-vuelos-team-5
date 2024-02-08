@@ -1,16 +1,15 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useContext, useState} from 'react';
-import BtnNext from '../../components/BtnNext';
+import React, {useContext} from 'react';
 import CardProcess from '../../components/CardProcess';
 import firestore from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
-import GlobalContext from '../../context/context';
+import {UserContext} from '../../../App';
 
 export default function FinalRegister({route}) {
   const usersCollection = firestore().collection('vuelos');
   const {origin, destiny, date, passengers} = route.params;
   const navigation = useNavigation();
-  const {globalVariable} = useContext(GlobalContext)
+  const {user} = useContext(UserContext);
 
   return (
     <View style={styles.containerView}>
@@ -35,7 +34,7 @@ export default function FinalRegister({route}) {
                 destino: destiny,
                 fecha: date,
                 pasajeros: passengers,
-                usuario: globalVariable,
+                usuario: user,
               },
             }),
             navigation.navigate('Home'),

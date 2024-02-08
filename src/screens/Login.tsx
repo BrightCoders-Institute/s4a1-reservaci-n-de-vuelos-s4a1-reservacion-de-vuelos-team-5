@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View, Alert} from 'react-native';
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import SignUpInputItem from '../components/SignUpInputItem';
 import LoginButton from '../components/LoginButton';
 import auth from '@react-native-firebase/auth';
@@ -8,12 +8,14 @@ import {UserContext} from '../../App';
 
 const Login = () => {
   const {user, handleUser} = useContext(UserContext);
-  console.log('estas en login screen '); ///DELETE CONSOLE LOG
-  console.log('user: ', user); ///DELETE CONSOLE LOG
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
   const navigation = useNavigation();
+
+  useEffect(() => {
+    console.log('Current user: ', user);
+  }, [user]);
 
   async function login(userEmail: string, userPassword: string) {
     try {
@@ -26,19 +28,17 @@ const Login = () => {
         return;
       }
       await auth().signInWithEmailAndPassword(userEmail, userPassword);
-      console.log('ya hicisite log');
       handleUser(userEmail);
       console.log(user);
-      console.log(user, ' ya cambio a: ', userEmail);
+      console.log('Current user change to:', userEmail);
       navigation.navigate('Home');
     } catch (error: any) {
-      Alert.alert(' Email or Password are invalid', error.ToString()); //error.toString()
+      Alert.alert(' Email or Password are invalid'); //error.toString()
     }
   }
 
   return (
     <View style={styles.view}>
-      <Text style={styles.simpleText}>Log In</Text>
       <SignUpInputItem
         func={setEmail}
         placeholder="email@email.com"
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     gap: 50,
     alignItems: 'center',
     margin: 30,
+    paddingTop: 70,
   },
   inputsView: {
     display: 'flex',

@@ -2,29 +2,27 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-
 interface CardProcessProps {
-  destino: string
-  origen: string,
-  fecha: string,
-  pasajeros: string
+  destino: string;
+  origen: string;
+  fecha: string;
+  pasajeros: string;
 }
 
-function CardFlight({ origen, destino, fecha, pasajeros}:CardProcessProps) {
-  
+function CardFlight({origen, destino, fecha, pasajeros}: CardProcessProps) {
   return (
     <View style={styles.container}>
       <View style={styles.destinyView}>
         <View>
           <Text style={styles.city}>{origen}</Text>
-          <Text style={styles.country}>serbia</Text>
+          <Text style={styles.country}>Country</Text>
         </View>
 
-        <Icon name='airplane' color='#5C6EF8' size={25}/>
+        <Icon name="airplane" color="#5C6EF8" size={28} />
 
         <View>
           <Text style={styles.city}>{destino}</Text>
-          <Text style={styles.country}>serbia</Text>
+          <Text style={styles.country}>Country</Text>
         </View>
       </View>
       <View style={styles.dateView}>
@@ -39,22 +37,21 @@ export default CardFlight;
 
 const styles = StyleSheet.create({
   container: {
-    borderBottomWidth: 2,
+    borderBottomWidth: 5,
     borderWidth: 1,
     width: 'auto',
     height: 'auto',
-    paddingHorizontal: 5,
-    borderRadius: 9,
-    borderColor: '#5C6EF8'
-    
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    borderColor: '#5C6EF8',
   },
   destinyView: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottomColor: 'lightgrey',
-    borderBottomWidth: 1,
+    borderBottomColor: '#1414b8',
+    borderBottomWidth: 2,
     paddingVertical: 10,
   },
   dateView: {
@@ -65,8 +62,8 @@ const styles = StyleSheet.create({
     paddingBottom: 18,
   },
   city: {
-    color: 'black',
-    fontSize: 20,
+    color: '#333c87',
+    fontSize: 18,
     fontWeight: '900',
     textTransform: 'uppercase',
     fontFamily: 'Roboto',
@@ -78,7 +75,8 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize',
   },
   date: {
+    fontSize: 16,
     color: 'black',
-    fontWeight: '600',
+    fontWeight: '900',
   },
 });

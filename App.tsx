@@ -2,12 +2,12 @@ import React from 'react';
 import MyStack from './src/navigate/Mainstack';
 import {NavigationContainer} from '@react-navigation/native';
 // import {GlobalProvider} from './src/context/context';
-import {createContext, useContext, useState} from 'react';
+import {createContext, useState} from 'react';
 
 const UserContext = createContext();
 
 function App(): React.JSX.Element {
-  const [user, setUser] = useState('hiUser');
+  const [user, setUser] = useState('initialUSER');
   function handleUser(newUser) {
     setUser(newUser);
   }

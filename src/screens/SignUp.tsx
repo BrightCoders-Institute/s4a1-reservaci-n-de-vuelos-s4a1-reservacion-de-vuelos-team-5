@@ -42,26 +42,26 @@ function SignUp(): React.JSX.Element {
       </View>
       <View style={{display: 'flex', gap: 8}}>
         <View style={styles.checkboxView}>
-          <Text style={styles.simpleText}>
-            I agree to the Terms and Privacy Policy
-          </Text>
           <Switch
             trackColor={{false: '#767577', true: '#81b0ff'}}
             thumbColor={isEnabled ? '#5065FF' : '#rBFBFBF '}
             onValueChange={toggleSwitch}
             value={isEnabled}
           />
+          <Text style={styles.simpleText}>
+            I agree to the Terms and Privacy Policy
+          </Text>
         </View>
         <View style={styles.checkboxView}>
-          <Text style={styles.simpleText}>
-            Subscribe for select product updates
-          </Text>
           <Switch
             trackColor={{false: '#767577', true: '#81b0ff'}}
             thumbColor={isEnabled2 ? '#5065FF' : '#rBFBFBF '}
             onValueChange={toggleSwitch2}
             value={isEnabled2}
           />
+          <Text style={styles.simpleText}>
+            Subscribe for select product updates
+          </Text>
         </View>
       </View>
 
@@ -84,7 +84,7 @@ function SignUp(): React.JSX.Element {
           <Text style={styles.simpleText}>Already have an account?</Text>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
             <View>
-              <Text style={{color: 'blue', fontSize: 15, fontWeight: '900'}}>
+              <Text style={{color: '#2C45FE', fontSize: 18, fontWeight: '900'}}>
                 Log In
               </Text>
             </View>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
     justifyContent: 'flex-start',
-    gap: 50,
+    gap: 45,
     alignItems: 'center',
     margin: 30,
   },
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   checkboxView: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     width: '100%',
   },
@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
   },
   simpleText: {
     color: 'grey',
+    fontSize: 15,
   },
 });
 

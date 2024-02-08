@@ -3,7 +3,6 @@ import CardFlight from '../components/CardFlight';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import BtnAddFly from '../components/BtnAddFly';
 import firestore from '@react-native-firebase/firestore';
-import GlobalContext from '../context/context';
 import {UserContext} from '../../App';
 
 interface FlightData {
@@ -15,10 +14,11 @@ interface FlightData {
 }
 
 export default function Home() {
-  const [data, setData] = useState<FlightData[]>([]); //esto para que es?
+  const [data, setData] = useState<FlightData[]>([]);
   const {user} = useContext(UserContext);
-  console.log('Home inicio con el usuario: ', user);
+
   useEffect(() => {
+    console.log('Home inicio con: ', user);
     const loadData = firestore()
       .collection('vuelos')
       .onSnapshot(snapshot => {
@@ -26,15 +26,14 @@ export default function Home() {
         setData(newData);
       });
     return () => loadData();
-  }, []);
+  }, [user]);
 
   return (
     <>
       <ScrollView>
         <View style={styles.homeView}>
-          {/*ESTA PARTE DA ERROR =>*/}
-          {/* {data.map((vuelo, index) => {
-            if (vuelo.usuario === user) {
+          {data.map((vuelo, index) => {
+            if (vuelo !== undefined && vuelo.usuario === user) {
               return (
                 <CardFlight
                   key={index}
@@ -45,8 +44,8 @@ export default function Home() {
                 />
               );
             }
-            return null; // Agrega un retorno null en el caso de que la condición no se cumpla
-          })} */}
+            return null;
+          })}
         </View>
       </ScrollView>
       <View style={styles.addFly}>
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
   homeView: {
     padding: 28,
     display: 'flex',
-    gap: 15,
+    gap: 20,
     flex: 1,
   },
   addFly: {
