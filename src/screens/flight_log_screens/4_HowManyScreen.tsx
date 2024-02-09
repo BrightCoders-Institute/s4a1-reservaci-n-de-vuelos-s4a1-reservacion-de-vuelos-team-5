@@ -40,14 +40,14 @@ export default function HowManyScreen({route}) {
         <WheelPicker
           selectedIndex={selectedIndex}
           options={['1', '2', '3', '4', '5', '6', '7', '8', '9']}
-          onChange={index => setSelectedIndex(index+1)}
+          onChange={index => setSelectedIndex(index)}
           itemHeight={60}
           itemTextStyle={{fontSize: 35, color: 'black', fontWeight: '900'}}
         />
       </View>
 
       <View style={styles.btn}>
-        <BtnNext next={objetoParaPasarANext} />
+      <BtnNext next={objetoParaPasarANext}/>
       </View>
     </View>
   );

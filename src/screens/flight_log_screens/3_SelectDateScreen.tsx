@@ -3,7 +3,13 @@ import React, {useState} from 'react';
 import BtnNext from '../../components/BtnNext';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
 import CardProcess from '../../components/CardProcess';
-
+const btn = () =>{ 
+  return (
+    <View style={styles.btnContainer}>
+      <Text style={styles.txt}>Next</Text>
+    </View>
+  )
+}
 export default function SelectDateScreen({route}) {
   const [selectedDay, setSelectedDay] = useState('');
   const {origin, destiny} = route.params;
@@ -49,7 +55,7 @@ export default function SelectDateScreen({route}) {
         }}
       />
       <View style={styles.btn}>
-        <BtnNext next={objetoParaPasarANext} />
+      {selectedDay.length>=1 ? <BtnNext next={objetoParaPasarANext}/>: btn()}
       </View>
     </View>
   );
@@ -81,4 +87,15 @@ const styles = StyleSheet.create({
     top: '90%',
     transform: [{translateX: -90}], //mitad del ancho del boton
   },
+  btnContainer: {
+    backgroundColor: '#B6B7BA',
+    alignItems: 'center',
+    width: 280,
+    borderRadius: 7,
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+  },
+  txt: {
+    color: 'white',
+  }
 });

@@ -20,26 +20,36 @@ export default function FinalRegister({route}) {
         nameD={destiny}
         countryD=""
         date={date}
-        passengers={`${passengers} passengers`}
+        passengers={`${passengers+1} passengers`}
       />
       <View style={styles.containerInput}>
         <Text style={styles.title}>Your request {'\n'}was received.</Text>
       </View>
       <View style={styles.btn}>
         <TouchableOpacity
-          onPress={[
+          onPress={ () => {
             usersCollection.add({
               Vuelos: {
                 origen: origin,
                 destino: destiny,
                 fecha: date,
-                pasajeros: passengers,
+                pasajeros: passengers+1,
                 usuario: user,
               },
-            }),
-            navigation.navigate('Home'),
-          ]}
-        />
+            });
+            navigation.navigate('Home');
+          }
+          }
+        > 
+          <View style={{backgroundColor: '#5C6EF8',
+    alignItems: 'center',
+    width: 280,
+    borderRadius: 7,
+    paddingVertical: 8,
+    paddingHorizontal: 15,}}>
+            <Text style={{color:"white",}}>Finish</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -63,6 +73,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     display: 'flex',
+    //flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',

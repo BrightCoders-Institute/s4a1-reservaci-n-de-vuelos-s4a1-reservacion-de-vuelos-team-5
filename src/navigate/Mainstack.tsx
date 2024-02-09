@@ -14,7 +14,7 @@ import {StyleSheet} from 'react-native';
 const Stack = createNativeStackNavigator();
 function MyStack() {
   return (
-    <Stack.Navigator initialRouteName="SignUp">
+    <Stack.Navigator initialRouteName="FromScreen">
       <Stack.Screen
         name="SignUp"
         component={SignUp}

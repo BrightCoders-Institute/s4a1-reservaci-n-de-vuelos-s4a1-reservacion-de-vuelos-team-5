@@ -29,9 +29,9 @@ const Login = () => {
       }
       await auth().signInWithEmailAndPassword(userEmail, userPassword);
       handleUser(userEmail);
-      console.log(user);
-      console.log('Current user change to:', userEmail);
-      navigation.navigate('Home');
+        console.log(user);
+        console.log('Current user change to:', userEmail);
+        navigation.navigate('Home');
     } catch (error: any) {
       Alert.alert(' Email or Password are invalid'); //error.toString()
     }

@@ -3,6 +3,14 @@ import React, {useState} from 'react';
 import BtnNext from '../../components/BtnNext';
 import CardProcess from '../../components/CardProcess';
 
+const btn = () =>{ 
+  return (
+    <View style={styles.btnContainer}>
+      <Text style={styles.txt}>Next</Text>
+    </View>
+  )
+}
+
 export default function ToScreen({route}) {
   const [destinyInput, setDestinyInput] = useState('');
   const {origin} = route.params;
@@ -32,7 +40,7 @@ export default function ToScreen({route}) {
         />
       </View>
       <View style={styles.btn}>
-        <BtnNext next={objetoParaPasarANext} />
+      {destinyInput.length>=1 ? <BtnNext next={objetoParaPasarANext}/>:btn()}
       </View>
     </View>
   );
@@ -40,13 +48,12 @@ export default function ToScreen({route}) {
 
 const styles = StyleSheet.create({
   containerInput: {
-    marginTop: 20,
+    marginTop: 130,
   },
   title: {
     fontSize: 35,
     fontWeight: 'bold',
     margin: 14,
-    marginBottom: 15,
     color: 'black',
   },
   input: {
@@ -65,4 +72,16 @@ const styles = StyleSheet.create({
     top: '90%',
     transform: [{translateX: -100}], //mitad del ancho del boton
   },
+  btnContainer: {
+    backgroundColor: '#B6B7BA',
+    alignItems: 'center',
+    width: 280,
+    borderRadius: 7,
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+  },
+  txt: {
+    color: 'white',
+  }
+ 
 });
