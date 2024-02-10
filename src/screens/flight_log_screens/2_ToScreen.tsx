@@ -1,7 +1,9 @@
-import {StyleSheet, Text, View, TextInput} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
+import { SelectList } from 'react-native-dropdown-select-list'
 import BtnNext from '../../components/BtnNext';
 import CardProcess from '../../components/CardProcess';
+import ciudades from '../../data/ciudades.json';
 
 const btn = () =>{ 
   return (
@@ -13,17 +15,22 @@ const btn = () =>{
 
 export default function ToScreen({route}) {
   const [destinyInput, setDestinyInput] = useState('');
+  const [selected, setSelected] = React.useState("");
   const {origin} = route.params;
   const objetoDeVariables = {origin: origin, destiny: destinyInput};
   const objetoParaPasarANext = {
     route: 'SelectDateScreen',
     params: objetoDeVariables,
   };
+
+const city = origin.split(", ")
+
+
   return (
     <View style={{position: 'relative', flex: 1, padding: 20}}>
       <CardProcess
-        nameO={origin}
-        countryO=""
+        nameO={city[1]}
+        countryO={city[0]}
         nameD=""
         countryD=""
         date=""
@@ -31,13 +38,19 @@ export default function ToScreen({route}) {
       />
       <View style={styles.containerInput}>
         <Text style={styles.title}>Where you will be {'\n'}flying to?</Text>
+        <TouchableOpacity>
+            
+          <SelectList 
+          setSelected={(val:any) => {
+            setDestinyInput(val)
+          }} 
+          data={ciudades} 
+          save="value"
+          placeholder='Select a city'
+          />
+          </TouchableOpacity>
 
-        <TextInput
-          value={destinyInput}
-          onChangeText={setDestinyInput}
-          style={styles.input}
-          placeholder="Select Location"
-        />
+  
       </View>
       <View style={styles.btn}>
       {destinyInput.length>=1 ? <BtnNext next={objetoParaPasarANext}/>:btn()}
@@ -48,7 +61,7 @@ export default function ToScreen({route}) {
 
 const styles = StyleSheet.create({
   containerInput: {
-    marginTop: 130,
+    marginTop: 90,
   },
   title: {
     fontSize: 35,

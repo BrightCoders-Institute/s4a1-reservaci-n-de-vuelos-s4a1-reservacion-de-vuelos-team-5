@@ -34,13 +34,17 @@ export default function Home() {
         <View style={styles.homeView}>
           {data.map((vuelo, index) => {
             if (vuelo !== undefined && vuelo.usuario === user) {
+              const city = vuelo.origen.split(", ")
+              const cityD = vuelo.destino.split(", ")
               return (
                 <CardFlight
                   key={index}
                   pasajeros={vuelo.pasajeros}
                   fecha={vuelo.fecha}
-                  origen={vuelo.origen}
-                  destino={vuelo.destino}
+                  origen={city[1]}
+                  destino={cityD[1]}
+                  origen2={city[0]}
+                  destino2={city[0]}
                 />
               );
             }

@@ -18,13 +18,17 @@ export default function HowManyScreen({route}) {
     route: 'FinalRegister',
     params: objetoDeVariables,
   };
+
+  const city = origin.split(", ")
+  const cityD = destiny.split(", ")
+
   return (
     <View style={{position: 'relative', flex: 1, padding: 20}}>
       <CardProcess
-        nameO={origin}
-        countryO=""
-        nameD={destiny}
-        countryD=""
+        nameO={city[1]}
+        countryO={city[0]}
+        nameD={cityD[1]}
+        countryD={cityD[0]}
         date={date}
         passengers=""
       />

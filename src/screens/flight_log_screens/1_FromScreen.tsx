@@ -2,6 +2,9 @@ import {StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native'
 import React, {createContext, useContext, useState} from 'react';
 import BtnNext from '../../components/BtnNext';
 import ToScreen from './2_ToScreen';
+import { SelectList } from 'react-native-dropdown-select-list'
+import ciudades from '../../data/ciudades.json';
+
 const btn = () =>{ 
   return (
     <View style={styles.btnContainer}>
@@ -9,9 +12,17 @@ const btn = () =>{
     </View>
   )
 }
+
+const data = [
+  {key:'1',value:'Jammu & Kashmir'},
+  {key:'2',value:'Gujrat'},
+  {key:'3',value:'Maharashtra'},
+  {key:'4',value:'Goatttt'},
+];
+
 export default function FromScreen() {
   const [originInput, setOriginInput] = useState("");
-
+  const [selected, setSelected] = React.useState("");
   const objetoDeVariables = {origin: originInput};
   const objetoParaPasarANext = {route: 'ToScreen', params: objetoDeVariables};
   
@@ -19,13 +30,18 @@ export default function FromScreen() {
     <View style={{position: 'relative', flex: 1, padding: 20}}>
       <View style={styles.containerInput}>
         <Text style={styles.title}>Where are you {'\n'}now?</Text>
+          <TouchableOpacity>
+            
+          <SelectList 
+          setSelected={(val:any) => {
+            setOriginInput(val)
+          }} 
+          data={ciudades} 
+          save="value"
+          placeholder='Select a city'
+          />
+          </TouchableOpacity>
 
-        <TextInput
-          value={originInput}
-          onChangeText={setOriginInput }
-          style={styles.input}
-          placeholder="Select Location"
-        />
       </View>
       <View style={styles.btn}>
         {originInput.length>=1 

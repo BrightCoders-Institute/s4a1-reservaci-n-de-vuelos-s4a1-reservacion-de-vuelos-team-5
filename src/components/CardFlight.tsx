@@ -1,28 +1,30 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import ciudades from '../data/ciudades.json'
 interface CardProcessProps {
   destino: string;
   origen: string;
   fecha: string;
   pasajeros: string;
+  origen2: string;
+  destino2: string;
 }
 
-function CardFlight({origen, destino, fecha, pasajeros}: CardProcessProps) {
+function CardFlight({origen, destino, fecha, pasajeros, origen2, destino2}: CardProcessProps) {
   return (
     <View style={styles.container}>
       <View style={styles.destinyView}>
         <View>
           <Text style={styles.city}>{origen}</Text>
-          <Text style={styles.country}>Country</Text>
+          <Text style={styles.country}>{origen2}</Text>
         </View>
 
         <Icon name="airplane" color="#5C6EF8" size={28} />
 
         <View>
           <Text style={styles.city}>{destino}</Text>
-          <Text style={styles.country}>Country</Text>
+          <Text style={styles.country}>{destino2}</Text>
         </View>
       </View>
       <View style={styles.dateView}>

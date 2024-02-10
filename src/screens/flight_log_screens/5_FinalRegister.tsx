@@ -11,14 +11,17 @@ export default function FinalRegister({route}) {
   const navigation = useNavigation();
   const {user} = useContext(UserContext);
 
+  const city = origin.split(", ")
+  const cityD = destiny.split(", ")
+
   return (
     <View style={styles.containerView}>
       <View style={{marginTop: 130}} />
       <CardProcess
-        nameO={origin}
-        countryO=""
-        nameD={destiny}
-        countryD=""
+        nameO={city[1]}
+        countryO={city[0]}
+        nameD={cityD[1]}
+        countryD={cityD[0]}
         date={date}
         passengers={`${passengers+1} passengers`}
       />
