@@ -1,7 +1,8 @@
 import {StyleSheet, Text, View, TextInput} from 'react-native';
 import React, {useState} from 'react';
+import auth from '@react-native-firebase/auth';
 
-export default function SignUpInputItem({placeholder, title, secure}) {
+export default function SignUpInputItem({placeholder, title, secure, func}) {
   const [isFocused, setIsFocused] = useState(false);
   function handleFocus() {
     setIsFocused(true);
@@ -9,11 +10,12 @@ export default function SignUpInputItem({placeholder, title, secure}) {
   const handleBlur = () => {
     setIsFocused(false);
   };
-
+  
   return (
     <View>
       <Text style={styles.text}>{title}</Text>
       <TextInput
+          onChangeText={func}
         style={[
           styles.input,
           {

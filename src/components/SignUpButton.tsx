@@ -1,14 +1,37 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 
-const SignUpButton = ({title}: any) => {
+interface SignUpProps {
+  title: string;
+  email: string;
+  password: string;
+}
+
+const SignUpButton = ({title, email, password}: SignUpProps) => {
   const navigation = useNavigation();
+
+  function validate() {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+    if (emailPattern.test(email) && passwordPattern.test(password)) {
+      auth().createUserWithEmailAndPassword(`${email}`, `${password}`);
+      Alert.alert('Éxito');
+      navigation.navigate('Login');
+    } else {
+      Alert.alert('Error', '¡El email o contraseña no son validos!');
+    }
+  }
+  const len = () => (password.length < 1 || email.length < 1 ? false : true);
+
   return (
     <TouchableOpacity
       style={styles.Button}
-      onPress={() => navigation.navigate('Home')}>
-      <View style={styles.containerButton}>
+      disabled={!len()}
+      onPress={validate}>
+      <View
+        style={[styles.containerButton, !len() && styles.containerButtonFalse]}>
         <Text style={styles.Btn_txt}>{title}</Text>
       </View>
     </TouchableOpacity>
@@ -30,6 +53,14 @@ const styles = StyleSheet.create({
   Btn_txt: {
     color: 'white',
     fontWeight: 'bold',
+  },
+  containerButtonFalse: {
+    width: 300,
+    alignItems: 'center',
+    padding: 10,
+    marginVertical: 15,
+    borderRadius: 8,
+    backgroundColor: 'gray',
   },
 });
 

@@ -1,28 +1,38 @@
 import React, {useState} from 'react';
-import {Switch, StyleSheet, View, Text} from 'react-native';
+import {Switch, StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import SignUpButton from '../components/SignUpButton';
 import SignUpInputItem from '../components/SignUpInputItem';
+import {useNavigation} from '@react-navigation/native';
 
 function SignUp(): React.JSX.Element {
   const [isEnabled, setIsEnabled] = useState(false);
   const [isEnabled2, setIsEnabled2] = useState(false);
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const toggleSwitch2 = () => setIsEnabled2(previousState2 => !previousState2);
+
+  const navigation = useNavigation();
+
   return (
     <View style={styles.view}>
       <View style={styles.inputsView}>
         <SignUpInputItem
+          func={setName}
           placeholder="Your Name"
           title="First Name"
           secure={false}
         />
         <SignUpInputItem
+          func={setEmail}
           placeholder="email@email.com"
           title="Email"
           secure={false}
         />
         <View style={{display: 'flex', alignItems: 'center', gap: 5}}>
           <SignUpInputItem
+            func={setPassword}
             placeholder="Password123"
             title="Password"
             secure={true}
@@ -32,36 +42,54 @@ function SignUp(): React.JSX.Element {
       </View>
       <View style={{display: 'flex', gap: 8}}>
         <View style={styles.checkboxView}>
-          <Text style={styles.simpleText}>
-            I agree to the Terms and Privacy Policy
-          </Text>
           <Switch
             trackColor={{false: '#767577', true: '#81b0ff'}}
             thumbColor={isEnabled ? '#5065FF' : '#rBFBFBF '}
             onValueChange={toggleSwitch}
             value={isEnabled}
           />
+          <Text style={styles.simpleText}>
+            I agree to the Terms and Privacy Policy
+          </Text>
         </View>
         <View style={styles.checkboxView}>
-          <Text style={styles.simpleText}>
-            Subscribe for select product updates
-          </Text>
           <Switch
             trackColor={{false: '#767577', true: '#81b0ff'}}
             thumbColor={isEnabled2 ? '#5065FF' : '#rBFBFBF '}
             onValueChange={toggleSwitch2}
             value={isEnabled2}
           />
+          <Text style={styles.simpleText}>
+            Subscribe for select product updates
+          </Text>
         </View>
       </View>
 
       <View style={styles.buttonsView}>
-        <SignUpButton title="Sign Up" />
+        <SignUpButton title="Sign Up" password={password} email={email} />
         <Text style={styles.simpleText}>or</Text>
-        <SignUpButton title="Sign Up with Google" />
-        <Text style={styles.simpleText}>
-          Already have an account? <Text style={{color: 'blue'}}>Log In</Text>
-        </Text>
+        <SignUpButton
+          password={password}
+          email={email}
+          title="Sign Up with Google"
+        />
+
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 10,
+            alignItems: 'center',
+          }}>
+          <Text style={styles.simpleText}>Already have an account?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <View>
+              <Text style={{color: '#2C45FE', fontSize: 18, fontWeight: '900'}}>
+                Log In
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -72,11 +100,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
     justifyContent: 'flex-start',
-    gap: 50,
+    gap: 45,
     alignItems: 'center',
     margin: 30,
-    // borderColor: 'red',
-    // borderWidth: 2,
   },
   inputsView: {
     display: 'flex',
@@ -85,7 +111,7 @@ const styles = StyleSheet.create({
   checkboxView: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     width: '100%',
   },
@@ -96,6 +122,7 @@ const styles = StyleSheet.create({
   },
   simpleText: {
     color: 'grey',
+    fontSize: 15,
   },
 });
 
